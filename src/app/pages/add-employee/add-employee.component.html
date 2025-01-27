@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>Add Employee</h2>
+        <form [formGroup]="employeeForm" (ngSubmit)="handleSubmit()">
+            <div class="mb-2">
+                <label class="from-label">Employee Name</label>
+                <input type="text" formControlName="empName" class="form-control" placeholder="Enter Employee Name">
+                <div class="text-danger" *ngIf="empName.invalid && empName.touched">
+                    <p *ngIf="empName.hasError('required')">Name is required</p>
+                    <p *ngIf="empName.hasError('minlength')">Name must be at least 3 characters</p>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="from-label">Employee email</label>
+                <input type="email" formControlName="empEmail" class="form-control" placeholder="Enter Employee Email">
+                <div class="text-danger" *ngIf="empEmail.invalid && empEmail.touched">
+                    <p *ngIf="empEmail.hasError('required')">Email is required</p>
+                    <p *ngIf="empEmail.hasError('email')">Invalid email address</p>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="from-label">Employee salary</label>
+                <input type="text" formControlName="empSalary" class="form-control" placeholder="Enter Employee Salary">
+                <div class="text-danger" *ngIf="empSalary.invalid && empSalary.touched">
+                    <p *ngIf="empSalary.hasError('required')">Salary is required</p>
+                    <p *ngIf="empSalary.hasError('min')">Invalid salary</p>
+                </div>
+            </div>
+            <div class="mb-2">
+                <button [disabled]="employeeForm.invalid" type="submit" class="btn btn-success">Add Employee</button>
+                <div class="text-success">{{successMessage}}</div>
+                <div class="text-danger">{{errorMessage}}</div>
+            </div>
+        </form>
+    </div>
+</div>
